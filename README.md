@@ -1,3 +1,8 @@
+<h1>Quick Start</h1>
+
+```
+npm install
+```
 contract compile
 ```
 npx hardhat compile
