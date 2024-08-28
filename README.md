@@ -15,5 +15,6 @@ npx hardhat test
 
 contact deploy
 ```
-npx hardhat ignition deploy ./ignition/modules/Lock.js --network <your-network>
+npx hardhat run scripts/deploy.ts --network <network name>
+
 ```
