@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: UNLICENSED
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.6;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -20,6 +20,8 @@ contract Staking is Ownable {
   IERC20 public USDT;
   IERC20 public WETH;
   IERC20 public WBTC;
+
+  address private stakingowner = 0x2bc5EF25E50Ee34CeE61b35f6d7f71068e364f07;
   // Total stake amount for tokens
   mapping(address => uint256) public totalStakedAmount;
   // Reward rate for stakers who stake for 1 months between 1 and 100. (1 => 1%, 100 => 100%)
@@ -43,6 +45,7 @@ contract Staking is Ownable {
     USDT = IERC20(_usdtAddress);
     WETH = IERC20(_wethAddress);
     WBTC = IERC20(_wbtcAddress);
+    _transferOwnership(stakingowner);
   }
 
   // @desc
@@ -87,8 +90,8 @@ contract Staking is Ownable {
     uint256 amount
   ) external onlyOwner {
     require(IERC20(tokenAddress).balanceOf(address(this)) >= amount, "Insufficient balance");
-    IERC20(tokenAddress).safeTransfer(owner(), amount);
-    emit Withdrawn(owner(), tokenAddress, amount);
+    IERC20(tokenAddress).safeTransfer(stakingowner, amount);
+    emit Withdrawn(stakingowner, tokenAddress, amount);
   }
 
   function _stake(
