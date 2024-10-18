@@ -1,11 +1,10 @@
 const port = process.env.HOST_PORT || 9090
-require('dotenv').config();
 
 module.exports = {
   networks: {
     mainnet: {
       // Don't put your private key here:
-      privateKey: process.env.PRIVATE_KEY,
+      privateKey: process.env.PRIVATE_KEY_MAINNET,
       /*
 Create a .env file (it must be gitignored) containing something like
 
